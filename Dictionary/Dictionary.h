@@ -21,8 +21,8 @@ private:
 public:
 	 Dictionary();
 	
-	 void AddElement(string x, string y);	
-	 void RemoveElement(string x);
+	 void Add(string x, string y);	
+	 void Remove(string x);
 	
 	 string getvalue(string key);
 
@@ -82,22 +82,24 @@ Dictionary::Dictionary()
 
 	}
 }
-void Dictionary:: AddElement(string x, string y)
+void Dictionary:: Add(string x, string y)
 {
 	REQUIRE0(keyexist(x) == 0);
 	int j = findempty();
 	keys[j] = x;
 	values[j] = y;
+	ENSURE0(keyexist(x) == 1);
 
 
 } 
-void Dictionary:: RemoveElement(string x)
+void Dictionary:: Remove(string x)
 {
 	REQUIRE0(keyexist(x) == 1);
 	int j = 0;
 	j = findkey(x);
 	keys[j] = (" ");
 	values[j] = (" ");
+	ENSURE0(keyexist(x) == 0);
 
 }
 string Dictionary:: getvalue(string key) 
