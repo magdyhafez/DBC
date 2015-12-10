@@ -7,47 +7,31 @@
 #include <string>
 
 using namespace std;
-bool keyexist(string y);
-int findkey(string y);
-int findempty();
+
 class Dictionary
 {
+private:
+
+	 string keys[100];
+	 string values[100];
+	 bool keyexist(string y);
+	 int findkey(string y);
+	 int findempty();
+
 public:
-
-	static string keys[100];
-	static string values[100];
-	void AddElement(string x, string y)
-	{
-		REQUIRE0(keyexist(x) == 0);
-		int j = findempty();
-		keys[j] = x;
-		values[j] = y;
-
-
-	}
+	 Dictionary();
 	
-	void RemoveElement(string x)
-	{
-		REQUIRE0(keyexist(x) == 1);
-		int j = 0;
-		j = findkey(x);
-		keys[j] = ("empty line");
-		values[j] = ("empty line");
-
-	}
-	string getvalue(string key)
-	{
-		REQUIRE0(keyexist(key) == 1);
-			int j = findkey(key);
-		return values[j]; 
-	}
+	 void AddElement(string x, string y);	
+	 void RemoveElement(string x);
+	
+	 string getvalue(string key);
 
 };
-bool keyexist (string y)  // find the key y in the array keys
+bool Dictionary::  keyexist (string y)  // find the key y in the array keys
 {
 	for (int i = 0; i < 100; i++)
 	{
-		if (Dictionary ::keys[i]== y)
+		if (keys[i]== y)
 		{
 			return 1;
 			
@@ -57,13 +41,13 @@ bool keyexist (string y)  // find the key y in the array keys
 	}
 	 return 0;
 }
-int findempty() // Find the first empty Element in array keys
-{
-	REQUIRE0(keyexist("empty line") == 1);
+int Dictionary:: findempty() // Find the first empty Element in array keys
+{ 
+	REQUIRE0(keyexist(" ") == 1);
 	for (int i = 0; i < 100; i++)
 	{
 		
-		if (Dictionary::keys[i] == "empty line")
+		if (keys[i] == " ")
 		{
 		   return i;
 
@@ -73,13 +57,13 @@ int findempty() // Find the first empty Element in array keys
 	
 
 }
-int findkey(string y)     //find a key string in array keys 
+int Dictionary:: findkey(string y)     //find a key string in array keys 
 {
 	REQUIRE0(keyexist(y)== 1);
 		for (int i = 0; i < 100; i++)
 		{
 			
-			if (Dictionary::keys[i] == y)
+			if (keys[i] == y)
 			{
 				return i;
 				
@@ -89,27 +73,39 @@ int findkey(string y)     //find a key string in array keys
 		}
 }
 
+Dictionary::Dictionary()
+{
+	for (int i = 0; i < 100; i++)
+	{
+		this->keys[i] = " ";
+		this->values[i] = " ";
+
+	}
+}
+void Dictionary:: AddElement(string x, string y)
+{
+	REQUIRE0(keyexist(x) == 0);
+	int j = findempty();
+	keys[j] = x;
+	values[j] = y;
 
 
-string Dictionary::keys[100] = { "empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line",
-	"empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line",
-	"empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line",
-	"empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line",
-	"empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line",
-	"empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line",
-	"empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line",
-	"empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line",
-	"empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line",
-	"empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line" };
-string Dictionary::values[100] = { "empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line" 
-	"empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line",
-	"empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line",
-	"empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line",
-	"empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line",
-	"empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line",
-	"empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line",
-	"empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line",
-	"empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line",
-	"empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line","empty line" }
+} 
+void Dictionary:: RemoveElement(string x)
+{
+	REQUIRE0(keyexist(x) == 1);
+	int j = 0;
+	j = findkey(x);
+	keys[j] = (" ");
+	values[j] = (" ");
+
+}
+string Dictionary:: getvalue(string key) 
+{
+	REQUIRE0(keyexist(key) == 1);
+	int j = findkey(key);
+	return values[j];
+}
+
 	 
 #endif // DICTIONARY_H
