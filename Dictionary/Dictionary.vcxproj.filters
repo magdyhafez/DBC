@@ -35,6 +35,9 @@
     <ClCompile Include="33800_Magdy Mohamed Abdel Moneim.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="33800_2_Magdy Mohamed Abdel Moneim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Dictionary.h">
